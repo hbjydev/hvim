@@ -52,8 +52,6 @@
                (+ byte hash (bit.lshift hash 5)))]
     (bit.tohex hash)))
 
-{: djb2}
-
 (lambda gensym-checksum [x ?options]
   "Generates a new symbol from the checksum of the object passed as a parameter
   after it is casted into an string using the `view` function.
@@ -288,6 +286,7 @@
  : str?
  : tbl?
  : ->str
+ : djb2
 
  ;; packaging
  : pack
