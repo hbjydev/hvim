@@ -13,4 +13,8 @@
        tree-sitter
 
        :ui
-       hvim)
+       hvim
+
+       :config
+       (default
+         +bindings))

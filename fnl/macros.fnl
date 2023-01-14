@@ -162,7 +162,7 @@
 
   Example:
   ```fennel
-  (pack :nyoom-engineering/oxocarbon.nvim {:opt true})
+  (pack :hvim-engineering/oxocarbon.nvim {:opt true})
   ```"
 
   ;; ensure the arguments are of the correct types
@@ -264,6 +264,20 @@
   (let [source (compile-modules _G.hvim/modules)]
     (expand-exprs [(unpack source)])))
 
+(lambda hvim-module! [name]
+  "By default modules should be loaded through use-package!. Of course, not every
+  modules needs a package. Sometimes we just want to load `config.fnl`. In this 
+  case, we can hack onto packer.nvim, give it a fake package, and ask it to load a 
+  config file.
+  Example of use:
+  ```fennel
+  (hvim-module! tools.tree-sitter)
+  ```"
+  (assert-compile (sym? name) "expected symbol for name" name)
+  (let [name (->str name)
+        hash (djb2 name)]
+    (table.insert _G.hvim/pack (pack (.. :hvim. hash) {:hvim-module name}))))
+
 (lambda packadd! [package]
   (assert-compile (sym? package) "expected symbol for package" package)
   (let [package (->str package)]
@@ -302,6 +316,7 @@
 
  ;; hvim
  : hvim!
+ : hvim-module!
  : hvim-module-p!
  : hvim-compile-modules!
  : hvim-init-modules!}
