@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+
+set -o errexit -o pipefail -o nounset
+
+# people like xdg
+CONFIG_PATH="${XDG_CONFIG_HOME:-${HOME}/.config}/nvim"
+CACHE_PATH="${XDG_CACHE_HOME:-${HOME}/.cache}/nvim"
+DATA_PATH="${XDG_DATA_HOME:-${HOME}/.local/share}/nvim"
+# HVIM_CONFIG="${XDG_DATA_HOME:-${HOME}/.config}/hvim"
+
+# silently enter ~/.config/nvim when updating
+pushd ${CONFIG_PATH} >/dev/null
+
+function install_hvim() {
+	printf "Linking Hvim ..."
+
+	#mkdir -p "${HVIM_CONFIG}"
+
+	#[ ! -f "${HVIM_CONFIG}/config.fnl" ] && ln "${CONFIG_PATH}/fnl/config.fnl" "${HVIM_CONFIG}/config.fnl"
+	#[ ! -f "${HVIM_CONFIG}/modules.fnl" ] && ln "${CONFIG_PATH}/fnl/modules.fnl" "${HVIM_CONFIG}/modules.fnl"
+	#[ ! -f "${HVIM_CONFIG}/packages.fnl" ] && ln "${CONFIG_PATH}/fnl/packages.fnl" "${HVIM_CONFIG}/packages.fnl"
+
+	printf "\n\033[1m\033[32mSuccessfully Linked Hvim\033[0m\n\n"
+	printf "Installing Core Dependencies..."
+
+	rm -rf "${DATA_PATH}/site/pack"
+
+	git clone -q --single-branch https://github.com/wbthomason/packer.nvim "${DATA_PATH}/site/pack/packer/opt/packer.nvim"
+	git clone -q -b nightly --single-branch https://github.com/rktjmp/hotpot.nvim.git "${DATA_PATH}/site/pack/packer/start/hotpot.nvim"
+
+	printf "\n\033[1m\033[32mSuccessfully Installed Core Dependencies\033[0m\n\n"
+}
+
+function help() {
+	printf "%s\n%s\n  %s\n%s\n" \
+		"usage: $(basename "$0") [options] [script [args]]" \
+		"Available options are:" \
+		"install  install core plugins" \
+		"sync  sync hvim modules, plugins, and dependencies (linters/formatters/parsers/language-servers)" \
+		"lock  generate lockfile for installed plugins (unstable)" \
+		"upgrade  upgrade Hvim Nvim" \
+		"profile  run Hvim Nvim with profilers enabled at startuptime"
+}
+
+case "${1:-}" in
+"")
+	help
+	;;
+help)
+	help
+	;;
+install)
+	if [ -d "${DATA_PATH}/site/pack/packer/opt/packer.nvim/" ]; then
+		printf "\n\033[1m\033[32mCore Dependencies are Already Installed\033[0m\n"
+	else
+		install_hvim
+	fi
+	;;
+
+sync)
+	start_time=$(date +%s)
+	printf "Synchronizing your config with Hvim Nvim\n\n"
+	if [ ! -d "${DATA_PATH}/site/pack/packer/opt/packer.nvim/" ]; then
+		printf "Core Dependencies Unavailable, running 'hvim install'\n"
+		install_hvim
+	fi
+	printf "Clearing cache"
+	rm -rf "${CACHE_PATH}"
+	rm -f "${CONFIG_PATH}/lua/packer_compiled.lua" || true
+	# set ulimit to fix packer.sync hanging with --headless: https://github.com/wbthomason/packer.nvim/issues/751
+	ulimit -S -n 4096
+	HVIM_CLI=true nvim --headless -c 'autocmd User PackerComplete quitall' -c 'lua require("packer").sync()'
+	echo
+	if [ -d "${DATA_PATH}/site/pack/packer/opt/nvim-treesitter/" ]; then
+		echo
+		read -p "Would you like to sync tree-sitter parsers for enabled modules? y/n: " -n 1 -r
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+			ts_time=$(date +%s)
+			printf "\nSyncing Tree-sitter Parsers (this may take a while)\n"
+			nvim --headless -c 'TSUpdate' -c 'sleep 20' -c 'qall'
+			printf "\n\033[1m\033[36mHvim successfully synced parsers in $(expr $(date +%s) - $ts_time)s\033[0m\n"
+		fi
+	else
+		printf "\nTree-sitter module disabled: skipping"
+	fi
+	if [ -d "${DATA_PATH}/site/pack/packer/opt/mason.nvim/" ]; then
+		echo
+		read -p "Would you like to sync tooling for enabled modules through Mason (language-servers, formatters, and linters)? y/n: " -n 1 -r
+		if [[ $REPLY =~ ^[Yy]$ ]]; then
+			mason_time=$(date +%s)
+			printf "\nSyncing tooling (this may take a while)\n"
+			nvim --headless -c 'Mason' -c 'qall'
+			printf "\n\033[1m\033[36mHvim successfully synced tooling in $(expr $(date +%s) - $mason_time)s\033[0m\n"
+		fi
+	else
+		printf "\nMason module disabled: skipping"
+	fi
+	printf "\n\033[1m\033[92mHvim successfully synced dependencies in $(expr $(date +%s) - $start_time)s\033[0m\n\n"
+	;;
+esac
+popd >/dev/null
