@@ -1,8 +1,3 @@
-local datadir = vim.fn.stdpath("data")
-
-vim.opt.rtp:append(datadir .. "/lazy/lazy.nvim")
-vim.opt.rtp:append(datadir .. "/lazy/hotpot.nvim")
-
 if pcall(require, "hotpot") then
 	-- Setup hotpot.nvim
 	require("hotpot").setup({
@@ -23,21 +18,8 @@ if pcall(require, "hotpot") then
 			},
 		},
 	})
-	-- Load profilers if nyoom is started in profile mode
-	if os.getenv("NYOOM_PROFILE") then
-		require("core.lib.profile").toggle()
-	end
-	-- local stdlib = require("core.lib")
-	-- for k, v in pairs(stdlib) do
-	-- 	rawset(_G, k, v)
-	-- end
-	require("core")
 
-	--if pcall(require, "lazy") then
-	--	require("lazy").setup(_G['hvim/pack'])
-	--else
-	--	print("Unable to require lazy")
-	--end
+	require("core")
 else
 	print("Unable to require hotpot")
 end
