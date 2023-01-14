@@ -1,8 +1,9 @@
 (import-macros {: use!
-               : unpack!
-               : hvim-init-modules!
-               : hvim-compile-modules!
-               : packadd!} :macros)
+                : pack
+                : unpack!
+                : hvim-init-modules!
+                : hvim-compile-modules!
+                : packadd!} :macros)
 
 (packadd! packer.nvim)
 
