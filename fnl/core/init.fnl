@@ -7,7 +7,37 @@
 (if cli
   (require :packages)
   (do
+    (import-macros {: set!} :macros)
 
+    ;; numbering
+    (set! number)
+    (set! relativenumber)
+
+    ;; indentation
+    (set! tabstop 4)
+    (set! softtabstop 4)
+    (set! shiftwidth 4)
+    (set! expandtab)
+    (set! smartindent)
+
+    ;; swap, backup & undo
+    (set! swapfile false)
+    (set! backup false)
+    (set! undodir (.. (vim.fn.stdpath :data) :undo))
+    (set! undofile)
+
+    ;; search
+    (set! hlsearch)
+    (set! incsearch)
+
+    ;; others
+    (set! wrap false)
+    (set! termguicolors)
+    (set! scrolloff 8)
+    (set! colorcolumn :80)
+    (set! cursorline)
+
+    ;; packaging
     (require :packer_compiled)
     (fn disable-packer [command]
       (fn first-to-upper [str]
@@ -19,6 +49,7 @@
                                           (error! (.. "Please use the `nyoom` cli")))
                                         {}))
 
-    (let [packer-commands [:install :update :compile :sync :status :lockfile]]
+    ;; disable packer commands
+    (let [packer-commands [:install :update :compile :sync :lockfile]]
       (each [_ v (ipairs packer-commands)]
         (disable-packer v)))))
