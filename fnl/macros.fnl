@@ -15,6 +15,11 @@
   (let [non-quoted (. expr 2)]
     `(fn [] ,non-quoted)))
 
+(lambda quoted->str [expr]
+  (assert-compile (quoted? expr) "expected quoted expression for expr" expr)
+  (let [non-quoted (. expr 2)]
+    (.. "'" (view non-quoted))))
+
 (fn ->str [x] (tostring x))
 (fn ->bool [x] (if x true false))
 
@@ -59,6 +64,71 @@
         suffix (or options.suffix "")]
     (sym (.. prefix (djb2 (view x)) suffix))))
 
+(lambda map! [[modes] lhs rhs ?options]
+  (assert-compile (sym? modes) "expected symbol for modes" modes)
+  (assert-compile (str? lhs) "expected string for lhs" lhs)
+  (assert-compile (or (str? rhs) (sym? rhs) (fn? rhs) (quoted? rhs))
+                  "expected string, symbol, function or quoted expression for rhs"
+                  rhs)
+  (assert-compile (or (nil? ?options) (table? ?options))
+                  "expected table for options" ?options)
+  (let [modes (icollect [char (string.gmatch (->str modes) ".")]
+                char)
+        options (or ?options {})
+        options (if (nil? options.desc)
+                    (doto options
+                      (tset :desc
+                            (if (quoted? rhs) (quoted->str rhs)
+                                (str? rhs) rhs
+                                (view rhs))))
+                    options)
+        rhs (if (quoted? rhs) (quoted->fn rhs) rhs)]
+    `(vim.keymap.set ,modes ,lhs ,rhs ,options)))
+
+(lambda let-with-scope! [[scope] name value]
+  (assert-compile (or (str? scope) (sym? scope))
+                  "expected string or symbol for scope" scope)
+  (assert-compile (or (= :b (->str scope)) (= :w (->str scope))
+                      (= :t (->str scope)) (= :g (->str scope)))
+                  "expected scope to be either b, w, t or g" scope)
+  (assert-compile (or (str? name) (sym? name))
+                  "expected string or symbol for name" name)
+  (let [name (->str name)
+        scope (->str scope)]
+    `(tset ,(match scope
+              :b `vim.b
+              :w `vim.w
+              :t `vim.t
+              :g `vim.g) ,name ,value)))
+
+(lambda let-global! [name value]
+  (assert-compile (or (str? name) (sym? name))
+                  "expected string or symbol for name" name)
+  (let [name (->str name)]
+    `(tset vim.g ,name ,value)))
+
+(lambda let! [...]
+  "Set a vim variable using the vim.<scope>.name API.
+  Accepts the following arguments:
+  [scope] -> optional. Can be either [g], [w], [t] or [b]. It's either a symbol
+             or a string surrounded by square brackets.
+  name -> either a symbol or a string.
+  value -> anything.
+  Example of use:
+  ```fennel
+  (let! hello :world)
+  (let! [w] hello :world)
+  ```
+  That compiles to:
+  ```fennel
+  (tset vim.g :hello :world)
+  (tset vim.w :hello :world)
+  ```"
+  (match [...]
+    [[scope] name value] (let-with-scope! [scope] name value)
+    [name value] (let-global! name value)
+    _ (error "expected let! to have at least two arguments: name value")))
+
 (lambda set! [name ?value]
   (assert-compile (sym? name) "expected symbol for name" name)
   (let [name (->str name)
@@ -90,9 +160,19 @@
     (expand-exprs exprs)))
 
 (lambda pack [identifier ?options]
+  "Processes a package specification into the correct format for Packer.
+
+  Example:
+  ```fennel
+  (pack :nyoom-engineering/oxocarbon.nvim {:opt true})
+  ```"
+
+  ;; ensure the arguments are of the correct types
   (assert-compile (str? identifier) "expected identifier to be a string" identifier)
   (if (not (nil? ?options))
       (assert-compile (tbl? ?options) "expected ?options to be a table" ?options))
+
+  ;; get the options (or an empty table) and process it
   (let [options (or ?options {})
         options (collect [k v (pairs options)]
                   (match k
@@ -216,6 +296,8 @@
 
  ;; vim
  : set!
+ : let!
+ : map!
  : packadd!
  : colorscheme!
 

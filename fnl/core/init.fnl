@@ -37,6 +37,8 @@
     (set! colorcolumn :80)
     (set! cursorline)
 
+    (require :bindings)
+
     ;; packaging
     (require :packer_compiled)
     (fn disable-packer [command]

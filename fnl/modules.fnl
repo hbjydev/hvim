@@ -9,6 +9,7 @@
        typescript
 
        :tools
+       telescope
        tree-sitter
 
        :ui

@@ -1,8 +1,8 @@
 (import-macros {: use!
-	        : unpack!
-	        : hvim-init-modules!
-		: hvim-compile-modules!
-		: packadd!} :macros)
+               : unpack!
+               : hvim-init-modules!
+               : hvim-compile-modules!
+               : packadd!} :macros)
 
 (packadd! packer.nvim)
 
@@ -10,10 +10,10 @@
 
 (local headless (= 0 (length (vim.api.nvim_list_uis))))
 (init {:lockfile {:enable true
-                  :path (.. (vim.fn.stdpath :config) :/lockfile.lua)}
-       :compile_path (.. (vim.fn.stdpath :config) :/lua/packer_compiled.lua)
-       :auto_reload_compiled false
-       :display {:non_interactive headless}})
+      :path (.. (vim.fn.stdpath :config) :/lockfile.lua)}
+      :compile_path (.. (vim.fn.stdpath :config) :/lua/packer_compiled.lua)
+      :auto_reload_compiled false
+      :display {:non_interactive headless}})
 
 ;; packer can manage itself
 (use! :EdenEast/packer.nvim {:opt true :branch :feat/lockfile})

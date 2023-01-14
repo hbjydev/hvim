@@ -9,4 +9,4 @@
 	     :TSEnable
 	     :TSDisable
 	     :TSModuleInfo]
-       :requires []})
+       :requires [(pack :nvim-treesitter/nvim-treesitter-textobjects {:opt true})]})
