@@ -1,5 +1,7 @@
 { ... }:
 {
+  imports = [ ./copilot.nix ];
+
   config = {
     plugins = {
       nix.enable = true;
