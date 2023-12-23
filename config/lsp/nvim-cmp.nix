@@ -120,11 +120,6 @@
       cmp-nvim-lsp-signature-help.enable = true;
       cmp-nvim-lua.enable = true;
       cmp_luasnip.enable = true;
-
-      luasnip = {
-        enable = true;
-        fromVscode = [{ }];
-      };
     };
   };
 }

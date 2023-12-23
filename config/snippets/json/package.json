@@ -1,0 +1,8 @@
+{
+  "name": "hvim-snips",
+  "contributes": {
+    "snippets": [
+      { "language": ["yaml"], "path": "./yaml.json" }
+    ]
+  }
+}

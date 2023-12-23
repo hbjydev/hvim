@@ -11,7 +11,7 @@ let
   };
 in
 {
-  imports = [ ./keymaps.nix ./ui ./lsp ./misc ./telescope ];
+  imports = [ ./keymaps.nix ./ui ./lsp ./misc ./telescope ./snippets ];
 
   config = {
     colorschemes.oxocarbon.enable = true;
