@@ -25,6 +25,7 @@
         };
 
         servers = {
+          astro.enable = true;
           bashls.enable = true;
           cssls.enable = true;
           dockerls.enable = true;
