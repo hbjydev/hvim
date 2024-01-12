@@ -1,6 +1,28 @@
-local oxocarbon = require("oxocarbon")
+local oxocarbon = require('oxocarbon').oxocarbon
 
-vim.api.nvim_set_hl(0, "StatusLineNC", { ctermbg = oxocarbon.base00 })
+vim.opt.background = "dark"
+
+-- Transparent BG
+vim.api.nvim_set_hl(0, "Normal", { bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "NormalNC", { bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = oxocarbon.base02, bg = oxocarbon.none })
+
+-- Telescope
+vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = oxocarbon.base03, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = oxocarbon.base03, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopePromptNormal", { fg = oxocarbon.base05, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = oxocarbon.base08, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = oxocarbon.none, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = oxocarbon.base02, bg = oxocarbon.base12 })
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = oxocarbon.base02, bg = oxocarbon.base11 })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = oxocarbon.blend, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = oxocarbon.none, bg = oxocarbon.base02 })
+vim.api.nvim_set_hl(0, "TelescopePreviewLine", { fg = oxocarbon.none, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = oxocarbon.base08, bg = oxocarbon.none, bold = true, italic = true })
+
+-- Status Line
+vim.api.nvim_set_hl(0, "StatusLineNC", { bg = oxocarbon.none })
 vim.opt.laststatus = 3
 
 local modes = {
@@ -208,6 +230,6 @@ au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline.active()
 au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
 au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline.short()
 augroup END
-]],
+  ]],
   false
 )
