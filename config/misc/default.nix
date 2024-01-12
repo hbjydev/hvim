@@ -36,11 +36,7 @@ in
       indent-blankline = {
         enable = true;
         indent = {
-          highlight = "FoldColumn";
           smartIndentCap = true;
-        };
-        scope = {
-          highlight = "NvimTreeIndentMarker";
         };
       };
 
