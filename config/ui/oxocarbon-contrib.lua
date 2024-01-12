@@ -4,6 +4,8 @@ vim.opt.background = "dark"
 
 -- Transparent BG
 vim.api.nvim_set_hl(0, "Normal", { bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "LineNr", { fg = oxocarbon.base03, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "SignColumn", { fg = oxocarbon.base02, bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "NormalNC", { bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = oxocarbon.base02, bg = oxocarbon.none })
