@@ -1,5 +1,8 @@
 { pkgs, ... }:
 let
+  inherit (pkgs) vimPlugins;
+  inherit (vimPlugins) friendly-snippets nvim-colorizer-lua;
+
   vim-just = pkgs.vimUtils.buildVimPlugin {
     name = "vim-just";
     src = pkgs.fetchFromGitHub {
@@ -14,10 +17,15 @@ in
   imports = [ ./copilot.nix ];
 
   config = {
-    extraPlugins = with pkgs.vimPlugins; [
+    extraPlugins = [
       vim-just
       friendly-snippets
+      nvim-colorizer-lua
     ];
+
+    extraConfigLua = ''
+      require("colorizer").setup {}
+    '';
 
     plugins = {
       nix.enable = true;
