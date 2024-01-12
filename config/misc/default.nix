@@ -33,13 +33,6 @@ in
       gitsigns.enable = true;
       diffview.enable = true;
 
-      indent-blankline = {
-        enable = true;
-        indent = {
-          smartIndentCap = true;
-        };
-      };
-
       comment-nvim.enable = true;
     };
   };
