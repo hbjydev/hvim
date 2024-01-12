@@ -30,7 +30,14 @@ in
 
       treesitter-context.enable = true;
 
-      gitsigns.enable = true;
+      gitsigns = {
+        enable = true;
+
+        signs = {
+          changedelete.text = "│";
+        };
+      };
+
       diffview.enable = true;
 
       comment-nvim.enable = true;

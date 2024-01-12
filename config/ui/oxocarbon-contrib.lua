@@ -23,6 +23,18 @@ vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = oxocarbon.none, bg = oxocarb
 vim.api.nvim_set_hl(0, "TelescopePreviewLine", { fg = oxocarbon.none, bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = oxocarbon.base14, bg = oxocarbon.none, bold = true, italic = true })
 
+-- Diff
+vim.api.nvim_set_hl(0, "DiffAdd", { bg = oxocarbon.base13, fg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "DiffAdded", { fg = oxocarbon.base13, bg = oxocarbon.none })
+
+vim.api.nvim_set_hl(0, "DiffChanged", { fg = oxocarbon.base14, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "DiffChange", { bg = oxocarbon.base14, fg = oxocarbon.none })
+
+vim.api.nvim_set_hl(0, "DiffRemoved", { fg = oxocarbon.base10, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "DiffDelete", { bg = oxocarbon.base10, fg = oxocarbon.none })
+
+vim.api.nvim_set_hl(0, "DiffText", { bg = oxocarbon.base02, fg = oxocarbon.none })
+
 -- Neo-Tree
 vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = oxocarbon.base02, bg = oxocarbon.none })
 
