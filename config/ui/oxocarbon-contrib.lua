@@ -16,12 +16,15 @@ vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = oxocarbon.base03, bg = ox
 vim.api.nvim_set_hl(0, "TelescopePromptNormal", { fg = oxocarbon.base05, bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = oxocarbon.base08, bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "TelescopeNormal", { fg = oxocarbon.none, bg = oxocarbon.none })
-vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = oxocarbon.base02, bg = oxocarbon.base12 })
-vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = oxocarbon.base02, bg = oxocarbon.base11 })
-vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = oxocarbon.blend, bg = oxocarbon.none })
-vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = oxocarbon.none, bg = oxocarbon.base02 })
+vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = oxocarbon.base12, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = oxocarbon.base11, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = oxocarbon.base14, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "TelescopeSelection", { fg = oxocarbon.none, bg = oxocarbon.base01 })
 vim.api.nvim_set_hl(0, "TelescopePreviewLine", { fg = oxocarbon.none, bg = oxocarbon.none })
-vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = oxocarbon.base08, bg = oxocarbon.none, bold = true, italic = true })
+vim.api.nvim_set_hl(0, "TelescopeMatching", { fg = oxocarbon.base14, bg = oxocarbon.none, bold = true, italic = true })
+
+-- Neo-Tree
+vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { fg = oxocarbon.base02, bg = oxocarbon.none })
 
 -- Status Line
 vim.api.nvim_set_hl(0, "StatusLineNC", { bg = oxocarbon.none })
