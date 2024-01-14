@@ -1,5 +1,4 @@
 local oxocarbon = require('oxocarbon').oxocarbon
-local oc_lualine = require('lualine.themes.oxocarbon')
 
 vim.opt.background = "dark"
 
