@@ -9,6 +9,7 @@ vim.api.nvim_set_hl(0, "SignColumn", { fg = oxocarbon.base02, bg = oxocarbon.non
 vim.api.nvim_set_hl(0, "NormalNC", { bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = oxocarbon.none })
 vim.api.nvim_set_hl(0, "FloatBorder", { fg = oxocarbon.base02, bg = oxocarbon.none })
+vim.api.nvim_set_hl(0, "VertSplit", { fg = oxocarbon.base01, bg = oxocarbon.none })
 
 -- Telescope
 vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = oxocarbon.base03, bg = oxocarbon.none })
