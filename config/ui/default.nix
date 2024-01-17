@@ -3,6 +3,7 @@
   imports = [
     ./dashboard
     ./tree
+    ./highlight.nix
   ];
 
   colorschemes.oxocarbon.enable = true;
@@ -11,8 +12,4 @@
     enable = true;
     globalstatus = true;
   };
-
-  extraConfigLua = ''
-    ${builtins.readFile ./oxocarbon-contrib.lua}
-  '';
 }
