@@ -1,12 +1,7 @@
 { ... }:
 let
   mkKeymap = mode: key: action: {
-    key = key;
-    action = action;
-    mode =
-      if builtins.isList mode
-      then mode
-      else [ mode ];
+    inherit mode key action;
     options = {
       silent = true;
     };
