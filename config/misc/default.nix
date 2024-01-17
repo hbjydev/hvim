@@ -1,17 +1,7 @@
 { pkgs, ... }:
 let
   inherit (pkgs) vimPlugins;
-  inherit (vimPlugins) friendly-snippets nvim-colorizer-lua;
-
-  vim-just = pkgs.vimUtils.buildVimPlugin {
-    name = "vim-just";
-    src = pkgs.fetchFromGitHub {
-      owner = "NoahTheDuke";
-      repo = "vim-just";
-      rev = "927b41825b9cd07a40fc15b4c68635c4b36fa923";
-      sha256 = "sha256-BmxYWUVBzTowH68eWNrQKV1fNN9d1hRuCnXqbEagRoY=";
-    };
-  };
+  inherit (vimPlugins) friendly-snippets nvim-colorizer-lua vim-just;
 in
 {
   imports = [ ./copilot.nix ];
