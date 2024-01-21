@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/release-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nixvim = {
       url = "github:nix-community/nixvim";
