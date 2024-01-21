@@ -1,13 +1,17 @@
-{ ... }:
+{ lib, ... }:
 {
   config = {
     highlight = builtins.mapAttrs
-      (_: opts: {
-        fg.__raw = "require('oxocarbon').oxocarbon.${opts.fg} or null";
-        bg.__raw = "require('oxocarbon').oxocarbon.${opts.bg} or null";
-        bold = opts.bold or null;
-        italic = opts.italic or null;
-      })
+      (_: opts@{ fg ? null, bg ? null, ... }:
+        opts //
+          (lib.optionalAttrs (fg != null) {
+            fg.__raw = "require('oxocarbon').oxocarbon.${fg} or null";
+          }) //
+          (lib.optionalAttrs (bg != null) {
+            bg.__raw = "require('oxocarbon').oxocarbon.${bg} or null";
+          })
+      )
+
       {
         Normal.bg = "none";
         LineNr = { fg = "base03"; bg = "none"; };
