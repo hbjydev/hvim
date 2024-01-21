@@ -36,13 +36,13 @@
           bold = true; italic = true;
         };
 
-        DiffAdd = { bg = "base13"; fg = "none"; };
-        DiffAdded = { bg = "base13"; fg = "none"; };
-        DiffChange = { bg = "base14"; fg = "none"; };
-        DiffChanged = { bg = "base14"; fg = "none"; };
-        DiffDelete = { bg = "base10"; fg = "none"; };
-        DiffRemoved = { bg = "base10"; fg = "none"; };
-        DiffText = { bg = "base02"; fg = "none"; };
+        DiffAdd = { fg = "base13"; bg = "none"; };
+        DiffAdded = { fg = "base13"; bg = "none"; };
+        DiffChange = { fg = "base14"; bg = "none"; };
+        DiffChanged = { fg = "base14"; bg = "none"; };
+        DiffDelete = { fg = "base10"; bg = "none"; };
+        DiffRemoved = { fg = "base10"; bg = "none"; };
+        DiffText = { fg = "base02"; bg = "none"; };
 
         NeoTreeTitleBar = { fg = "base02"; bg = "none"; };
       };
