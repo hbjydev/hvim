@@ -36,7 +36,7 @@
           nixd.enable = true;
 
           pylsp = {
-            enable = true;
+            enable = false;
             settings.plugins = {
               flake8.enabled = false;
               pycodestyle.enabled = false;
@@ -46,6 +46,7 @@
               ruff.enabled = false;
             };
           };
+          pyright.enable = true;
 
           terraformls.enable = true;
           tsserver.enable = true;
