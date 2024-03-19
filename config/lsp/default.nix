@@ -34,20 +34,7 @@
           jsonls.enable = true;
           lua-ls.enable = true;
           nixd.enable = true;
-
-          pylsp = {
-            enable = false;
-            settings.plugins = {
-              flake8.enabled = false;
-              pycodestyle.enabled = false;
-              pylsp_mypy.report_progress = true;
-              isort.enabled = true;
-              black.enabled = true;
-              ruff.enabled = false;
-            };
-          };
           pyright.enable = true;
-
           terraformls.enable = true;
           tsserver.enable = true;
           yamlls.enable = true;
