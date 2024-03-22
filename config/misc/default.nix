@@ -22,6 +22,8 @@ in
     '';
 
     plugins = {
+      direnv.enable = true;
+
       nix.enable = true;
 
       treesitter = {
@@ -38,11 +40,22 @@ in
         signs = {
           changedelete.text = "│";
         };
+
+        onAttach.function = ''
+          function(bufnr)
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hs', '<cmd>Gitsigns stage_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hr', '<cmd>Gitsigns reset_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hS', '<cmd>Gitsigns stage_buffer<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hR', '<cmd>Gitsigns reset_buffer<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hd', '<cmd>Gitsigns diffthis<CR>', {})
+          end
+        '';
       };
 
       diffview.enable = true;
 
       comment-nvim.enable = true;
+      todo-comments.enable = true;
     };
   };
 }
