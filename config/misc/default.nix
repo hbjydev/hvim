@@ -48,6 +48,8 @@ in
             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hS', '<cmd>Gitsigns stage_buffer<CR>', {})
             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hR', '<cmd>Gitsigns reset_buffer<CR>', {})
             vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hd', '<cmd>Gitsigns diffthis<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>]h', '<cmd>Gitsigns next_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>[h', '<cmd>Gitsigns prev_hunk<CR>', {})
           end
         '';
       };
