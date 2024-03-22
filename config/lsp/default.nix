@@ -1,6 +1,9 @@
-{ ... }:
+{ pkgs, ... }:
+let
+  gopls = pkgs.callPackage ../../packages/gopls.nix {};
+in
 {
-  imports = [ ./nvim-cmp.nix ];
+  imports = [ ./cmp.nix ];
 
   config = {
     plugins = {
@@ -29,7 +32,10 @@
           bashls.enable = true;
           cssls.enable = true;
           dockerls.enable = true;
-          gopls.enable = true;
+          gopls = {
+            enable = true;
+            package = gopls;
+          };
           html.enable = true;
           jsonls.enable = true;
           lua-ls.enable = true;
