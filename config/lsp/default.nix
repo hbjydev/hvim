@@ -53,8 +53,9 @@ in
       conform-nvim = {
         enable = true;
         formattersByFt = {
+          go = [ "gofumpt" ];
           lua = [ "stylua" ];
-          python = [ "isort" "black" ];
+          python = [ "ruff_format" "ruff_fix" "isort" "black" ];
           javascript = [ "prettierd" ];
           nix = [ "nixpkgs_fmt" ];
           tf = [ "terraform_fmt" ];

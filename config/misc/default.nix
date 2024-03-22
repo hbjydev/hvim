@@ -15,6 +15,10 @@ in
 
     extraConfigLua = ''
       require("colorizer").setup {}
+
+      vim.api.nvim_create_user_command("Format", function(args)
+        require("conform").format({ async = true, lsp_fallback = true })
+      end, {})
     '';
 
     plugins = {

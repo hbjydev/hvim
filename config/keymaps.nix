@@ -42,7 +42,7 @@ in
 
       (mkNormap "<leader>pv" ":Neotree toggle<CR>")
 
-      (mkNormap "<leader>F" ":lua require('conform').format {}<CR>")
+      (mkNormap "<leader>F" ":Format<CR>")
     ];
   };
 }
