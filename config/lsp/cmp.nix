@@ -44,37 +44,37 @@
 
             "<C-y>" = "cmp.mapping.confirm()";
 
-            # "<Tab>" = {
-            #   modes = [ "i" "s" ];
-            #   action = ''
-            #     function(fallback)
-            #       if cmp.visible() then
-            #         cmp.select_next_item()
-            #       elseif require("luasnip").expand_or_locally_jumpable() then
-            #         require("luasnip").expand_or_jump()
-            #       elseif has_words_before() then
-            #         cmp.complete()
-            #       else
-            #         fallback()
-            #       end
-            #     end
-            #   '';
-            # };
-            #
-            # "<S-Tab>" = {
-            #   modes = [ "i" "s" ];
-            #   action = ''
-            #     function(fallback)
-            #       if cmp.visible() then
-            #         cmp.select_prev_item()
-            #       elseif require("luasnip").jumpable(-1) then
-            #         require("luasnip").jump(-1)
-            #       else
-            #         fallback()
-            #       end
-            #     end
-            #   '';
-            # };
+            "<Tab>" = ''
+              cmp.mapping(
+                function(fallback)
+                  if cmp.visible() then
+                    cmp.select_next_item()
+                  elseif require("luasnip").expand_or_locally_jumpable() then
+                    require("luasnip").expand_or_jump()
+                  elseif has_words_before() then
+                    cmp.complete()
+                  else
+                    fallback()
+                  end
+                end,
+                { 'i', 's' }
+              )
+            '';
+
+            "<S-Tab>" = ''
+              cmp.mapping(
+                function(fallback)
+                  if cmp.visible() then
+                    cmp.select_prev_item()
+                  elseif require("luasnip").jumpable(-1) then
+                    require("luasnip").jump(-1)
+                  else
+                    fallback()
+                  end
+                end,
+                { 'i', 's' }
+              )
+            '';
           };
 
           formatting = {
