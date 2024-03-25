@@ -43,13 +43,13 @@ in
 
         onAttach.function = ''
           function(bufnr)
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hs', '<cmd>Gitsigns stage_hunk<CR>', {})
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hr', '<cmd>Gitsigns reset_hunk<CR>', {})
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hS', '<cmd>Gitsigns stage_buffer<CR>', {})
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hR', '<cmd>Gitsigns reset_buffer<CR>', {})
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', 'hd', '<cmd>Gitsigns diffthis<CR>', {})
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>]h', '<cmd>Gitsigns next_hunk<CR>', {})
-            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>[h', '<cmd>Gitsigns prev_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cs', '<cmd>Gitsigns stage_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>Gitsigns reset_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cS', '<cmd>Gitsigns stage_buffer<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cR', '<cmd>Gitsigns reset_buffer<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>Gitsigns diffthis<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', ']c', '<cmd>Gitsigns next_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '[c', '<cmd>Gitsigns prev_hunk<CR>', {})
           end
         '';
       };
