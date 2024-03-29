@@ -18,9 +18,16 @@ in
 
   plugins = {
     direnv.enable = true;
-
+    diffview.enable = true;
     nix.enable = true;
+    comment-nvim.enable = true;
+    todo-comments.enable = true;
 
+    treesitter = {
+      enable = true;
+      indent = true;
+      folding = true;
+    };
     treesitter-context.enable = true;
 
     gitsigns = {
@@ -42,10 +49,5 @@ in
         end
       '';
     };
-
-    diffview.enable = true;
-
-    comment-nvim.enable = true;
-    todo-comments.enable = true;
   };
 }
