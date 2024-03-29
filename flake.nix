@@ -13,21 +13,22 @@
       systems = inputs.nixpkgs.lib.systems.flakeExposed;
 
       perSystem = { pkgs, system, ... }:
-      let
-        nixvim = inputs.nixvim.legacyPackages.${system};
-      in {
-        devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            just
-          ];
-        };
+        let
+          nixvim = inputs.nixvim.legacyPackages.${system};
+        in
+        {
+          devShells.default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              just
+            ];
+          };
 
-        packages.default = nixvim.makeNixvimWithModule {
-          module = { imports = [ ./config ]; };
-          pkgs = (import inputs.nixpkgs {
-            inherit system; config.allowUnfree = true;
-          });
+          packages.default = nixvim.makeNixvimWithModule {
+            module = { imports = [ ./config ]; };
+            pkgs = (import inputs.nixpkgs {
+              inherit system; config.allowUnfree = true;
+            });
+          };
         };
-      };
     };
 }

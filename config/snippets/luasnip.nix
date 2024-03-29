@@ -1,9 +1,9 @@
 { ... }:
 {
-  config.plugins.luasnip = {
+  plugins.luasnip = {
     enable = true;
     fromVscode = [
-      {}
+      { }
       { paths = ./json; }
     ];
   };

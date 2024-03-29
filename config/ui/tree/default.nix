@@ -1,30 +1,28 @@
 { ... }:
 {
-  config = {
-    plugins.neo-tree = {
-      enable = true;
-      enableGitStatus = true;
-      enableRefreshOnWrite = true;
+  plugins.neo-tree = {
+    enable = true;
+    enableGitStatus = true;
+    enableRefreshOnWrite = true;
 
-      defaultComponentConfigs = {
-        indent = {
-          withExpanders = true;
-          expanderCollapsed = "";
-          expanderExpanded = "";
-          expanderHighlight = "NeoTreeExpander";
-        };
+    defaultComponentConfigs = {
+      indent = {
+        withExpanders = true;
+        expanderCollapsed = "";
+        expanderExpanded = "";
+        expanderHighlight = "NeoTreeExpander";
       };
+    };
 
-      window = {
-        position = "float";
-      };
+    window = {
+      position = "float";
+    };
 
-      filesystem = {
-        filteredItems = {
-          hideDotfiles = false;
-          alwaysShow = [ ".gitignore" "flake.nix" ];
-          hideByPattern = [ "*/.git" ];
-        };
+    filesystem = {
+      filteredItems = {
+        hideDotfiles = false;
+        alwaysShow = [ ".gitignore" "flake.nix" ];
+        hideByPattern = [ "*/.git" ];
       };
     };
   };
