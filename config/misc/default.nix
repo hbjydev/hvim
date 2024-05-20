@@ -20,7 +20,7 @@ in
     direnv.enable = true;
     diffview.enable = true;
     nix.enable = true;
-    comment-nvim.enable = true;
+    comment.enable = true;
     todo-comments.enable = true;
 
     treesitter = {
@@ -33,21 +33,23 @@ in
     gitsigns = {
       enable = true;
 
-      signs = {
-        changedelete.text = "│";
-      };
+      settings = {
+        signs = {
+          changedelete.text = "│";
+        };
 
-      onAttach.function = ''
-        function(bufnr)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cs', '<cmd>Gitsigns stage_hunk<CR>', {})
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>Gitsigns reset_hunk<CR>', {})
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cS', '<cmd>Gitsigns stage_buffer<CR>', {})
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cR', '<cmd>Gitsigns reset_buffer<CR>', {})
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>Gitsigns diffthis<CR>', {})
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', ']c', '<cmd>Gitsigns next_hunk<CR>', {})
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '[c', '<cmd>Gitsigns prev_hunk<CR>', {})
-        end
-      '';
+        onAttach.function = ''
+          function(bufnr)
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cs', '<cmd>Gitsigns stage_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cr', '<cmd>Gitsigns reset_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cS', '<cmd>Gitsigns stage_buffer<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cR', '<cmd>Gitsigns reset_buffer<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>cd', '<cmd>Gitsigns diffthis<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', ']c', '<cmd>Gitsigns next_hunk<CR>', {})
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '[c', '<cmd>Gitsigns prev_hunk<CR>', {})
+          end
+        '';
+      };
     };
   };
 }

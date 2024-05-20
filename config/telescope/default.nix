@@ -13,7 +13,7 @@
         "<leader>rr" = "lsp_references";
       };
 
-      defaults = {
+      settings.defaults = {
         prompt_prefix = "   ";
         selection_caret = "  ";
         entry_prefix = "  ";

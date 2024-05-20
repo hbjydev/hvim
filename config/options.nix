@@ -3,7 +3,7 @@
   config = {
     globals.mapleader = " ";
 
-    options = {
+    opts = {
       # numbering
       number = true;
       relativenumber = true;
