@@ -49,6 +49,10 @@ in
     };
 
     fidget.enable = true;
-    rustaceanvim.enable = true;
+
+    rustaceanvim = {
+      enable = true;
+      settings.tools.enable_clippy = true;
+    };
   };
 }
