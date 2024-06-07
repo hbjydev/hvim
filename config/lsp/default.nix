@@ -3,7 +3,7 @@ let
   gopls = pkgs.callPackage ../../packages/gopls.nix { };
 in
 {
-  imports = [ ./cmp.nix ./formatter.nix ];
+  imports = [ ./cmp.nix ./dap.nix ./formatter.nix ];
 
   plugins = {
     lsp = {
@@ -49,6 +49,6 @@ in
     };
 
     fidget.enable = true;
-    rust-tools.enable = true;
+    rustaceanvim.enable = true;
   };
 }
