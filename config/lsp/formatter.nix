@@ -35,6 +35,7 @@ in
       nix = [ "nixpkgs_fmt" ];
       tf = [ "terraform_fmt" ];
       "_" = [ "trim_whitespace" ];
+      jsonnet = [ "jsonnetfmt" ];
     };
   };
 }
