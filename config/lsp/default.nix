@@ -5,6 +5,9 @@ in
 {
   imports = [ ./cmp.nix ./dap.nix ./formatter.nix ];
 
+  extraPackages = [ pkgs.jsonnet-language-server ];
+  extraConfigLua = "require'lspconfig'.jsonnet_ls.setup{}";
+
   plugins = {
     lsp = {
       enable = true;
