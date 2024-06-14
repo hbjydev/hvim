@@ -5,9 +5,6 @@ in
 {
   imports = [ ./cmp.nix ./dap.nix ./formatter.nix ];
 
-  extraPackages = [ pkgs.jsonnet-language-server ];
-  extraConfigLua = "require'lspconfig'.jsonnet_ls.setup{}";
-
   plugins = {
     lsp = {
       enable = true;
@@ -40,6 +37,7 @@ in
         };
         html.enable = true;
         jsonls.enable = true;
+        jsonnet-ls.enable = true;
         lua-ls.enable = true;
         nixd.enable = true;
         ocamllsp.enable = true;
