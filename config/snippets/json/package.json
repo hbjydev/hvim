@@ -2,7 +2,8 @@
   "name": "hvim-snips",
   "contributes": {
     "snippets": [
-      { "language": ["yaml"], "path": "./yaml.json" }
+      { "language": ["yaml"], "path": "./yaml.json" },
+      { "language": ["nix"], "path": "./nix.json" }
     ]
   }
 }
