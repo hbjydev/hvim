@@ -6,3 +6,6 @@ build package="default":
 
 run package="default":
   nix run ".#{{package}}"
+
+cache-build package="default":
+  attic push hayden $(nix build --no-link --json --print-build-logs ".#{{package}}" | jq -r .[].outputs.out)
