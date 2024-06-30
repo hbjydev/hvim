@@ -1,7 +1,4 @@
-{ pkgs, ... }:
-let
-  gopls = pkgs.callPackage ../../packages/gopls.nix { };
-in
+{ ... }:
 {
   imports = [ ./cmp.nix ./dap.nix ./formatter.nix ];
 
@@ -31,10 +28,7 @@ in
         bashls.enable = true;
         cssls.enable = true;
         dockerls.enable = true;
-        gopls = {
-          enable = true;
-          package = gopls;
-        };
+        gopls.enable = true;
         html.enable = true;
         jsonls.enable = true;
         jsonnet-ls.enable = true;
