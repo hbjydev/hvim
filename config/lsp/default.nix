@@ -35,6 +35,7 @@
         lua-ls.enable = true;
         nixd.enable = true;
         ocamllsp.enable = true;
+        prismals.enable = true;
         pyright.enable = true;
         terraformls.enable = true;
         tsserver.enable = true;
