@@ -40,7 +40,6 @@
           enable = true;
           settings = {
             pyright.disableOrganizeImports = true;
-            python.analysis.ignore = [ "*" ];
           };
         };
         ruff.enable = true;
@@ -65,7 +64,7 @@
     {
       event = "LspAttach";
       group = "lsp_attach_disable_ruff_hover";
-      callback = ''
+      callback.__raw = ''
         function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if client == nil then
