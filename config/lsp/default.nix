@@ -36,7 +36,14 @@
         nixd.enable = true;
         ocamllsp.enable = true;
         prismals.enable = true;
-        pyright.enable = true;
+        pyright = {
+          enable = true;
+          settings = {
+            pyright.disableOrganizeImports = true;
+            python.analysis.ignore = [ "*" ];
+          };
+        };
+        ruff.enable = true;
         terraformls.enable = true;
         tsserver.enable = true;
         yamlls.enable = true;
@@ -51,4 +58,25 @@
       settings.tools.enable_clippy = true;
     };
   };
+
+  autoGroups.lsp_attach_disable_ruff_hover.clear = true;
+  autoCmd = [
+    {
+      event = "LspAttach";
+      group = "lsp_attach_disable_ruff_hover";
+      callback = ''
+        function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client == nil then
+            return
+          end
+          if client.name == 'ruff' then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+          end
+        end
+      '';
+      desc = "LSP: Disable hover capability from Ruff";
+    }
+  ];
 }
