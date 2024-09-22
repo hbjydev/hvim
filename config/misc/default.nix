@@ -1,13 +1,14 @@
 { pkgs, ... }:
 let
   inherit (pkgs) vimPlugins;
-  inherit (vimPlugins) friendly-snippets nvim-colorizer-lua vim-just;
+  inherit (vimPlugins) friendly-snippets nvim-colorizer-lua vim-just vim-nickel;
 in
 {
   imports = [ ./copilot.nix ];
 
   extraPlugins = [
     vim-just
+    vim-nickel
     friendly-snippets
     nvim-colorizer-lua
   ];
