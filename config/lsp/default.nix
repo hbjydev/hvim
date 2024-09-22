@@ -34,6 +34,7 @@
         jsonnet-ls.enable = true;
         lua-ls.enable = true;
         nixd.enable = true;
+        nickel-ls.enable = true;
         ocamllsp.enable = true;
         prismals.enable = true;
         pyright = {
