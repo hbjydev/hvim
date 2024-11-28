@@ -4,7 +4,6 @@
   plugins = {
     alpha = {
       enable = true;
-      iconsEnabled = true;
 
       layout =
         let

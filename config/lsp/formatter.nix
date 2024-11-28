@@ -26,7 +26,7 @@ in
 
   plugins.conform-nvim = {
     enable = true;
-    formattersByFt = {
+    settings.formattersByFt = {
       go = [ "gofumpt" ];
       lua = [ "stylua" ];
       python = [ "ruff_format" "ruff_fix" "isort" "black" ];

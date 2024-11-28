@@ -23,10 +23,11 @@ in
     nix.enable = true;
     comment.enable = true;
     todo-comments.enable = true;
+    web-devicons.enable = true;
 
     treesitter = {
       enable = true;
-      indent = true;
+      settings.indent.enable = true;
       folding = true;
     };
     treesitter-context.enable = true;

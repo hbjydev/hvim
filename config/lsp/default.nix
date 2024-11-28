@@ -27,16 +27,18 @@
         astro.enable = true;
         bashls.enable = true;
         cssls.enable = true;
+        denols = {
+          enable = true;
+          rootDir = "require('lspconfig').util.root_pattern('deno.json', 'deno.jsonc')";
+        };
         dockerls.enable = true;
         gopls.enable = true;
         html.enable = true;
         jsonls.enable = true;
-        jsonnet-ls.enable = true;
-        lua-ls.enable = true;
+        jsonnet_ls.enable = true;
+        lua_ls.enable = true;
         nixd.enable = true;
-        nickel-ls.enable = true;
-        ocamllsp.enable = true;
-        prismals.enable = true;
+        nickel_ls.enable = true;
         pyright = {
           enable = true;
           settings = {
@@ -45,7 +47,10 @@
         };
         ruff.enable = true;
         terraformls.enable = true;
-        tsserver.enable = true;
+        ts_ls = {
+          enable = true;
+          rootDir = "require('lspconfig').util.root_pattern('package.json')";
+        };
         volar.enable = true;
         yamlls.enable = true;
         zls.enable = true;
