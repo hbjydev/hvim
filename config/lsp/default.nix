@@ -50,6 +50,7 @@
         ts_ls = {
           enable = true;
           rootDir = "require('lspconfig').util.root_pattern('package.json')";
+          extraOptions.single_file_support = false;
         };
         volar.enable = true;
         yamlls.enable = true;
