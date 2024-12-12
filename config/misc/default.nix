@@ -27,8 +27,11 @@ in
 
     treesitter = {
       enable = true;
-      settings.indent.enable = true;
       folding = true;
+      settings = {
+        indent.enable = true;
+        highlight.enable = true;
+      };
     };
     treesitter-context.enable = true;
 
